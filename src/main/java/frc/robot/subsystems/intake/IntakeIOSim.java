@@ -25,12 +25,23 @@ public class IntakeIOSim implements IntakeIO {}
             DRIVE_GEARBOX)
     }
 
-    @Override
+@override
     public void updateInputs(IntakeIOInputs inputs) {
-        if (isIntakeClosedLoop) {
-            intakeMotorVoltage =
-                intakePidController.calculate(intakeSim.getAngularVelocityRadPerSec());
-        } else {
-            intakePidController.reset();
+        intakeSim.setInputVoltage(intakeMotorVoltage);
+        intakeSim.update(0.02);
+        inputs.intakePositionRad = intakeSim.getAngularPositionRad();
+        inputs.intakeVelocityRadPerSec = intakeSim.getAngularVelocityRadPerSec();
+        inputs.intakeAppliedVolts = intakeMotorVoltage;
+        inputs.intakeCurrentAmps = intakeSim.getCurrentDrawAmps();
         }
-    }
+    @Override
+    public void setintakeVelocity(double velocityRadPerSec) {
+        isIntakeClosedLoop = true;
+        intakePidController.setSetpoint(velocityRadPerSec);
+        }
+    @override
+    public void setIntakeVoltage(double voltage) {
+        isIntakeClosedLoop = false;
+        intakeMotorVoltage = voltage;
+        }
+    

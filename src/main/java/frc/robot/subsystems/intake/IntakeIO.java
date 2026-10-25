@@ -1,7 +1,5 @@
 package frc.robot.subsystems.drive.intake;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
-
+import edu.wpi.first.wpilibj2.command.SubsystemBase;    
 public interface IntakeIO {
     @AutoLog
     public static class IntakeIOInputs {
