@@ -1,5 +1,4 @@
 package frc.robot.subsystems.intake;
-
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.subsystems.drive.intake.IntakeIO;

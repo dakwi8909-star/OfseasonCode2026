@@ -6,6 +6,8 @@ public class PreShootIOReal implements PreShootIO {
         this.preshootMotor = preshootMotor;
         this.preshootMotorConfig = new TalonFXConfiguration();
     }
+    private PIDController preshootPidController =
+            new PIDController(PRESHOOT_KP, PRESHOOT_KI, PRESHOOT_KD);
 
     @Override
     public void updateInputs(PreShootIOInputs inputs) {
@@ -33,6 +35,5 @@ public class PreShootIOReal implements PreShootIO {
 
     @Override
     public void setPreshootPositionClosedLoop(boolean closedLoop) {
-        // Implement closed-loop control logic here if needed
     }
 }
